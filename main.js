@@ -19,6 +19,7 @@
 // First Method
 function indexOfSumValues1(arr, target) {
     let num1, num2;
+    let result = [];
 
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
@@ -29,11 +30,9 @@ function indexOfSumValues1(arr, target) {
         }
     }
 
-    if(arr.indexOf(num1) === arr.indexOf(num2)) {
-        return [arr.indexOf(num1), arr.lastIndexOf(num1)];
-    }
+    result = arr.indexOf(num1) === arr.indexOf(num2) ? [arr.indexOf(num1), arr.lastIndexOf(num1)] : [arr.indexOf(num1), arr.indexOf(num2)];
 
-    return [arr.indexOf(num1), arr.indexOf(num2)].sort();
+    return result.sort();
 }
 
 
@@ -45,14 +44,11 @@ function indexOfSumValues2(arr, target) {
     for(var element of arr) {
         minus = target - element;
         if(arr.indexOf(minus) !== -1) {
-            if(arr.indexOf(element) === arr.indexOf(minus)) {
-                result = [arr.indexOf(element), arr.lastIndexOf(element)];
-            } else
-                result = [arr.indexOf(element), arr.indexOf(minus)].sort();
+            result = arr.indexOf(element) === arr.indexOf(minus) ? [arr.indexOf(element), arr.lastIndexOf(element)] : [arr.indexOf(element), arr.indexOf(minus)];
         }
     }
 
-    return result;
+    return result.sort();
 }
 
 let num1 = [2, 7, 11, 15];
@@ -64,10 +60,10 @@ let target2 = 6;
 let num3 = [3, 3];
 let target3 = 6;
 
-//console.log(indexOfSumValues1(num1, target1));
-//console.log(indexOfSumValues1(num2, target2));
-//console.log(indexOfSumValues1(num3, target3));
+console.log(indexOfSumValues1(num1, target1));
+console.log(indexOfSumValues1(num2, target2));
+console.log(indexOfSumValues1(num3, target3));
 
-//console.log(indexOfSumValues2(num1, target1));
-//console.log(indexOfSumValues2(num2, target2));
-//console.log(indexOfSumValues2(num3, target3));
+console.log(indexOfSumValues2(num1, target1));
+console.log(indexOfSumValues2(num2, target2));
+console.log(indexOfSumValues2(num3, target3));
