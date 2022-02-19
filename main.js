@@ -1,0 +1,73 @@
+'use strict';
+
+/*
+    Homework Part 1 - Ece Kırcalı
+
+    The first Method has two nested loops
+    In every loop iteration, it checks the sum
+    When condition is met, values in the array is saved to num1 and num2
+    Then the function returns index of those values and sorts them
+    Time complexity is n^2
+
+    The second method has 1 for-of loop
+    In every iteration, it takes the difference between target and element and saves it to a variable named "minus"
+    If the index of "minus" exists in the array, it saves the indexes of element and minus to a variable called result 
+    Time complexity is n
+*/
+
+
+// First Method
+function indexOfSumValues1(arr, target) {
+    let num1, num2;
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            if((arr[i] + arr[j] === target) && (i !== j)) {
+                num1 = arr[i];
+                num2 = arr[j];
+            }
+        }
+    }
+
+    if(arr.indexOf(num1) === arr.indexOf(num2)) {
+        return [arr.indexOf(num1), arr.lastIndexOf(num1)];
+    }
+
+    return [arr.indexOf(num1), arr.indexOf(num2)].sort();
+}
+
+
+// Second Method
+function indexOfSumValues2(arr, target) {
+    let minus = 0;
+    let result = [];
+    
+    for(var element of arr) {
+        minus = target - element;
+        if(arr.indexOf(minus) !== -1) {
+            if(arr.indexOf(element) === arr.indexOf(minus)) {
+                result = [arr.indexOf(element), arr.lastIndexOf(element)];
+            } else
+                result = [arr.indexOf(element), arr.indexOf(minus)].sort();
+        }
+    }
+
+    return result;
+}
+
+let num1 = [2, 7, 11, 15];
+let target1 = 9;
+
+let num2 = [3, 2, 4];
+let target2 = 6;
+
+let num3 = [3, 3];
+let target3 = 6;
+
+//console.log(indexOfSumValues1(num1, target1));
+//console.log(indexOfSumValues1(num2, target2));
+//console.log(indexOfSumValues1(num3, target3));
+
+//console.log(indexOfSumValues2(num1, target1));
+//console.log(indexOfSumValues2(num2, target2));
+//console.log(indexOfSumValues2(num3, target3));
