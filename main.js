@@ -22,11 +22,11 @@ function indexOfSumValues1(arr, target) {
     let result = [-1,-1];
 
     for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length; j++) {
-            if((arr[i] + arr[j] === target) && (i !== j)) {
+        for (let j = i+1; j < arr.length; j++) {
+            if((arr[i] + arr[j] === target)) {
                 num1 = arr[i];
                 num2 = arr[j];
-                result = [i,j]
+                result = [i,j];
             }
         }
     }
