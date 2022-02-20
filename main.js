@@ -19,18 +19,19 @@
 // First Method
 function indexOfSumValues1(arr, target) {
     let num1, num2;
-    let result = [];
+    let result = [-1,-1];
 
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
             if((arr[i] + arr[j] === target) && (i !== j)) {
                 num1 = arr[i];
                 num2 = arr[j];
+                result = [i,j]
             }
         }
     }
 
-    result = arr.indexOf(num1) === arr.indexOf(num2) ? [arr.indexOf(num1), arr.lastIndexOf(num1)] : [arr.indexOf(num1), arr.indexOf(num2)];
+    //result = arr.indexOf(num1) === arr.indexOf(num2) ? [arr.indexOf(num1), arr.lastIndexOf(num1)] : [arr.indexOf(num1), arr.indexOf(num2)];
 
     return result.sort();
 }
@@ -39,7 +40,7 @@ function indexOfSumValues1(arr, target) {
 // Second Method
 function indexOfSumValues2(arr, target) {
     let minus = 0;
-    let result = [];
+    let result = [-1, -1];
     
     for(var element of arr) {
         minus = target - element;
@@ -60,10 +61,17 @@ let target2 = 6;
 let num3 = [3, 3];
 let target3 = 6;
 
+let num4 = [1, 2, 3];
+let target4 = 9;
+
+console.log("Test First Method");
 console.log(indexOfSumValues1(num1, target1));
 console.log(indexOfSumValues1(num2, target2));
 console.log(indexOfSumValues1(num3, target3));
+console.log(indexOfSumValues1(num4, target4));
 
+console.log("Test Second Method");
 console.log(indexOfSumValues2(num1, target1));
 console.log(indexOfSumValues2(num2, target2));
 console.log(indexOfSumValues2(num3, target3));
+console.log(indexOfSumValues2(num4, target4));
